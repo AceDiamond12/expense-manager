@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        <h1>Welcome to the Expense Manager, {{ session['username'] }}!</h1>
+    </header>
+
+    <nav>
+        <a href="{{ url_for('expenses_page') }}">Manage Expenses</a>
+        <a href="{{ url_for('earnings_page') }}">Manage Earnings</a>
+        <a href="{{ url_for('report') }}">View Report</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+    <footer>
+        <p>&copy; 2024 Expense Manager. All rights reserved.</p>
+    </footer>
+</body>
+</html>

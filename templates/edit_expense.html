@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Expense</title>
+    <script>
+        function toggleOtherCategory() {
+            const categorySelect = document.getElementById("category");
+            const otherInput = document.getElementById("other-category");
+            // Show the "Other" input field if "Other" is selected
+            if (categorySelect.value === "Other") {
+                otherInput.style.display = "inline";
+            } else {
+                otherInput.style.display = "none";
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Edit Expense</h1>
+    <form method="POST">
+        <label for="category">Category:</label>
+        <select name="category" id="category" onchange="toggleOtherCategory()" required>
+            <option value="Food" {% if expense.category == 'Food' %}selected{% endif %}>Food</option>
+            <option value="Transport" {% if expense.category == 'Transport' %}selected{% endif %}>Transport</option>
+            <option value="Rent" {% if expense.category == 'Rent' %}selected{% endif %}>Rent</option>
+            <option value="Utilities" {% if expense.category == 'Utilities' %}selected{% endif %}>Utilities</option>
+            <option value="Other" {% if expense.category == 'Other' %}selected{% endif %}>Other</option>
+        </select><br><br>
+
+        <input type="text" id="other-category" name="category_other" placeholder="Enter custom category" 
+               value="{{ expense.category if expense.category != 'Other' else '' }}" 
+               style="display: {% if expense.category == 'Other' %}inline{% else %}none{% endif %};"><br><br>
+
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" step="0.01" value="{{ expense.amount }}" required><br><br>
+        
+        <label for="date">Date:</label>
+        <input type="date" name="date" value="{{ expense.date }}" required><br><br>
+
+        <button type="submit">Update Expense</button>
+    </form>
+
+    <a href="{{ url_for('expenses_page') }}">Back to Expenses</a>
+</body>
+</html>

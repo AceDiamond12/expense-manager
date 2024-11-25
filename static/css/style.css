@@ -1,0 +1,121 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+header img {
+    width: 300px;  
+    height: auto;  
+    margin-bottom: 10px;
+}
+
+
+h1 {
+    margin-bottom: 10px;
+}
+
+/* Form Styles */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 20px auto;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Navigation Links (buttons) */
+nav a {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    margin: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+nav a:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight upward movement */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Link Styles */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* List Items (for Expenses and Earnings) */
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul li a {
+    margin-left: 10px;
+    color: #e74c3c;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+footer {
+    margin-top: 20px;
+    color: #777;
+}
