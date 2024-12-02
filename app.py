@@ -36,13 +36,13 @@ def view_columns(table_name):
 
 @app.route('/users')
 def view_users():
-    if 'username' not in session:
+    if 'username' not in session or session['username'] != 'admin':  # Restrict access to 'admin'
         return redirect(url_for('login'))
     
     users = User.query.all()
     return render_template('users.html', users=users)
 
-@app.route('/expenses')
+@app.route('/expensest')
 def view_expenses():
     if 'username' not in session:
         return redirect(url_for('login'))
@@ -50,7 +50,7 @@ def view_expenses():
     expenses = Expense.query.all()
     return render_template('expenses.html', expenses=expenses)
 
-@app.route('/earnings')
+@app.route('/earningst')
 def view_earnings():
     if 'username' not in session:
         return redirect(url_for('login'))
@@ -261,25 +261,35 @@ def logout():
 # Report route
 @app.route('/report')
 def report():
-    total_expenses = sum(expense.amount for expense in Expense.query.all())
-    total_earnings = sum(earning.amount for earning in Earning.query.all())
+    if 'username' not in session:
+        return redirect(url_for('login'))  # Ensure the user is logged in
 
+    user_id = session['user_id']  # Get the logged-in user's ID
+
+    # Calculate totals for the logged-in user
+    total_expenses = sum(expense.amount for expense in Expense.query.filter_by(user_id=user_id))
+    total_earnings = sum(earning.amount for earning in Earning.query.filter_by(user_id=user_id))
+
+    # Aggregate expenses by category for the logged-in user
     expense_categories = {}
-    for expense in Expense.query.all():
+    for expense in Expense.query.filter_by(user_id=user_id):
         category = expense.category
         if category not in expense_categories:
             expense_categories[category] = 0
         expense_categories[category] += expense.amount
 
+    # Aggregate earnings by category for the logged-in user
     earning_categories = {}
-    for earning in Earning.query.all():
+    for earning in Earning.query.filter_by(user_id=user_id):
         category = earning.category
         if category not in earning_categories:
             earning_categories[category] = 0
         earning_categories[category] += earning.amount
 
+    # Render the report page with the user's specific data
     return render_template('report.html', total_expenses=total_expenses, total_earnings=total_earnings,
                            expense_categories=expense_categories, earning_categories=earning_categories)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
