@@ -18,7 +18,7 @@ from sqlalchemy import inspect
 
 @app.route('/tables')
 def view_tables():
-    if 'username' not in session:
+    if 'username' not in session or session['username'] != 'admin':  # Restrict access to 'admin'
         return redirect(url_for('login'))
     
     inspector = inspect(db.engine)
