@@ -7,24 +7,37 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Expense and Earnings Report</h1>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        <h1>Expense and Earnings Report</h1>
+    </header>
 
-    <h2>Total Expenses: ${{ total_expenses }}</h2>
-    <h3>Expenses by Category:</h3>
-    <ul>
-        {% for category, amount in expense_categories.items() %}
-            <li>{{ category }}: ${{ amount }}</li>
-        {% endfor %}
-    </ul>
+    <div class="report-container">
+        <section class="report-section">
+            <h2>Total Expenses: ${{ total_expenses }}</h2>
+            <h3>Expenses by Category:</h3>
+            <ul>
+                {% for category, amount in expense_categories.items() %}
+                    <li>{{ category }}: ${{ amount }}</li>
+                {% endfor %}
+            </ul>
+        </section>
 
-    <h2>Total Earnings: ${{ total_earnings }}</h2>
-    <h3>Earnings by Category:</h3>
-    <ul>
-        {% for category, amount in earning_categories.items() %}
-            <li>{{ category }}: ${{ amount }}</li>
-        {% endfor %}
-    </ul>
+        <section class="report-section">
+            <h2>Total Earnings: ${{ total_earnings }}</h2>
+            <h3>Earnings by Category:</h3>
+            <ul>
+                {% for category, amount in earning_categories.items() %}
+                    <li>{{ category }}: ${{ amount }}</li>
+                {% endfor %}
+            </ul>
+        </section>
 
-    <a href="{{ url_for('home') }}">Back to Home</a>
+        <a href="{{ url_for('home') }}" class="back-link">Back to Home</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Expense Manager. All rights reserved.</p>
+    </footer>
 </body>
 </html>

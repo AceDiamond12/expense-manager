@@ -30,8 +30,9 @@
             <option value="Other" {% if expense.category == 'Other' %}selected{% endif %}>Other</option>
         </select><br><br>
 
+        <!-- Input for custom category, shown only if "Other" is selected -->
         <input type="text" id="other-category" name="category_other" placeholder="Enter custom category" 
-               value="{{ expense.category if expense.category != 'Other' else '' }}" 
+               value="{{ expense.category if expense.category != 'Other' else expense.category_other }}" 
                style="display: {% if expense.category == 'Other' %}inline{% else %}none{% endif %};"><br><br>
 
         <label for="amount">Amount:</label>

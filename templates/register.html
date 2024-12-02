@@ -7,14 +7,32 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Register</h1>
-    <form method="POST">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br><br>
-        <button type="submit">Register</button>
-    </form>
-    <a href="{{ url_for('login') }}">Already have an account? Login</a>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        <h1>Create a New Account</h1>
+    </header>
+
+    <div class="form-container">
+        <form method="POST">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br><br>
+
+            <!-- Show error message if username already exists -->
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Expense Manager. All rights reserved.</p>
+    </footer>
 </body>
 </html>

@@ -29,8 +29,9 @@
             <option value="Other" {% if earning.category == 'Other' %}selected{% endif %}>Other</option>
         </select><br><br>
 
+        <!-- Input for custom category, shown only if "Other" is selected -->
         <input type="text" id="other-category" name="category_other" placeholder="Enter custom category" 
-               value="{{ earning.category if earning.category != 'Other' else '' }}" 
+               value="{{ earning.category if earning.category != 'Other' else earning.category_other }}" 
                style="display: {% if earning.category == 'Other' %}inline{% else %}none{% endif %};"><br><br>
 
         <label for="amount">Amount:</label>

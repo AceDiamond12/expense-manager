@@ -13,10 +13,12 @@
     </header>
 
     <nav>
-        <a href="{{ url_for('expenses_page') }}">Manage Expenses</a>
-        <a href="{{ url_for('earnings_page') }}">Manage Earnings</a>
-        <a href="{{ url_for('report') }}">View Report</a>
-        <a href="{{ url_for('logout') }}">Logout</a>
+        <ul>
+            <li><a href="{{ url_for('expenses_page') }}">Manage Expenses</a></li>
+            <li><a href="{{ url_for('earnings_page') }}">Manage Earnings</a></li>
+            <li><a href="{{ url_for('report') }}">View Report</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
     </nav>
 
     <footer>

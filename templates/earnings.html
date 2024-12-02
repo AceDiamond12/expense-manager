@@ -27,6 +27,7 @@
             <option value="Investment">Investment</option>
             <option value="Other">Other</option>
         </select><br><br>
+
         <input type="text" id="other-category" name="category_other" placeholder="Enter custom category" style="display:none;"><br><br>
 
         <label for="amount">Amount:</label>
@@ -43,8 +44,8 @@
         {% for earning in earnings %}
             <li>
                 {{ earning.category }} - ${{ earning.amount }} ({{ earning.date }})
-                <a href="{{ url_for('edit_earning', index=loop.index0) }}">Edit</a> |
-                <a href="{{ url_for('delete_earning', index=loop.index0) }}" onclick="return confirm('Are you sure you want to delete this earning?')">Delete</a>
+                <a href="{{ url_for('edit_earning', id=earning.id) }}">Edit</a> |
+                <a href="{{ url_for('delete_earning', id=earning.id) }}" onclick="return confirm('Are you sure you want to delete this earning?')">Delete</a>
             </li>
         {% endfor %}
     </ul>
