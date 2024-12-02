@@ -14,6 +14,51 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize SQLAlchemy
 db = SQLAlchemy(app)
 
+from sqlalchemy import inspect
+
+@app.route('/tables')
+def view_tables():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    inspector = inspect(db.engine)
+    tables = inspector.get_table_names()
+    return render_template('tables.html', tables=tables)
+
+@app.route('/columns/<table_name>')
+def view_columns(table_name):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    inspector = inspect(db.engine)
+    columns = inspector.get_columns(table_name)
+    return render_template('columns.html', table_name=table_name, columns=columns)
+
+@app.route('/users')
+def view_users():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    users = User.query.all()
+    return render_template('users.html', users=users)
+
+@app.route('/expenses')
+def view_expenses():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    expenses = Expense.query.all()
+    return render_template('expenses.html', expenses=expenses)
+
+@app.route('/earnings')
+def view_earnings():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    earnings = Earning.query.all()
+    return render_template('earnings.html', earnings=earnings)
+
+
 # Define User Model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Columns in {{ table_name }}</title>
+</head>
+<body>
+    <h1>Columns in Table: {{ table_name }}</h1>
+    <ul>
+        {% for column in columns %}
+            <li>{{ column['name'] }} ({{ column['type'] }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Earnings</title>
+</head>
+<body>
+    <h1>Earnings</h1>
+    <ul>
+        {% for earning in earnings %}
+            <li>Category: {{ earning.category }}, Amount: ${{ earning.amount }}, Date: {{ earning.date }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
